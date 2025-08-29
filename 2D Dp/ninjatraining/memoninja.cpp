@@ -2,7 +2,9 @@
 #include<vector>
 using namespace std;
 
-int f(int day,int last,vector<vector<int>>&points){
+int f(int day,int last,vector<vector<int>>&points,vector<vector<int>>&dp){
+    if(dp[day][last]!=-1) return dp[day][last];
+    
     if(day==0){
         int maxi=0;
         for(int i=0;i<=2;i++){
@@ -10,23 +12,25 @@ int f(int day,int last,vector<vector<int>>&points){
                 maxi=max(maxi,points[0][i]);
             }
         }
-        return maxi;
+        return dp[day][last]=maxi;
     }
     int maxi=0;
-    for(int i=0;i<2;i++){
+    for(int i=0;i<=2;i++){
         if(i!=last){
-            int point=points[day][i]+f(day-1,i,points);
+            int point=points[day][i]+f(day-1,i,points,dp);
           maxi=max(maxi,point);
 
         }
     }
-    return maxi;
+    return dp[day][last]=maxi;
 
 }
 
 int ninjaTraining(vector<vector<int>>&points,int n){
+        vector<vector<int>>dp(n,vector<int>(4,-1));
 
-    return f(n-1,3,points);
+
+    return f(n-1,3,points,dp);
 
 }
 

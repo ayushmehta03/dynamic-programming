@@ -1,4 +1,5 @@
 #include<iostream>
+#include<vector>
 using namespace std;
 
 int f(int i,int j,vector<vector<int>>&obst,vector<vector<int>>&dp){

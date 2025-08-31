@@ -25,7 +25,6 @@ int uniquePaths(int m,int n){
 int main(){
  int m=3;
  int n=7;
- vector<int>dp[m][n];
  int ans=uniquePaths(m,n);
  cout<<" "<<ans;
 

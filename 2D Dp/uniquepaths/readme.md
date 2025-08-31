@@ -5,3 +5,7 @@ Given the two integers m and n, return the number of possible unique paths that 
 The test cases are generated so that the answer will be less than or equal to 2 * 109.
 
 leetcode qno-62
+<p align="center">
+  <img src="https://assets.leetcode.com/static_assets/public/images/problemset/robot_maze.png" alt="Robot Maze" width="400"/>
+</p>
+

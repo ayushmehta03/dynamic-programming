@@ -25,7 +25,7 @@ int main(){
     }
 
     if(dp[n-1][T]) cout << "Yes";
-    else cout << "No";
+    else cout << "No subset sum found";
 
     return 0;
 }

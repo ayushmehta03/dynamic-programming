@@ -1,0 +1,76 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+
+int f(int idx,vector<int>&arr,int target,vector<vector<int>>&dp){
+
+    if(idx==0){
+        // if the last index value is completly divisble by the remaining targte 
+        // for ex if its 2 and target is so 6%2==0 will return 6/2->no of coins
+        if(target%arr[0]==0) return target/arr[0];
+
+        // remove this way not possible by adding max value
+        else return 1e9;
+
+
+    }
+
+    // if the same idx and target is encountered before just return it
+
+    if(dp[idx][target]!=-1) return dp[idx][target];
+
+    // either we can pick the coin aur not pick 
+
+
+    // not pick case-> target will not be affected only index will change and no change in number of coins so 0+ recurssive call
+    int nPick=0+f(idx-1,arr,target,dp);
+
+    // intialize pick as maximum value
+    int pick=1e9;
+
+
+    //only pick if the value is less than or equal to the target
+
+    if(arr[idx]<=target){
+        // we will stay at the index and subtract the target until the upper condition is right
+        pick=1+f(idx,arr,target-arr[idx],dp);
+
+    }
+
+
+    // return the minimum from both of recurssive call
+
+    // store the value while returning to return direct values from dp array to solve overlapping problems
+
+    return dp[idx][target]= min(pick,nPick);
+
+
+
+
+}
+
+
+int main(){
+    // dominations
+    vector<int>arr={5,7,1};
+
+    // target amount
+    int target=10;
+
+
+    // grab the size of dominations array 
+    int n=arr.size();
+
+
+
+    // declaring the dp array for solving overlapping problems
+    vector<vector<int>>dp(n,vector<int>(target+1,-1));
+
+
+    // passing on the starting index,array and the target
+    int ans=f(n-1,arr,target,dp);
+
+    cout<<ans;
+
+
+}
